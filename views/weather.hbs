@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+
+         {{!-- <link rel="stylesheet" href="https://js.arcgis.com/4.11/esri/themes/light/main.css">
+         <script src="https://js.arcgis.com/4.11/"></script>
+
+           <script>
+            require([
+                "esri/Map",
+                "esri/views/MapView"
+                ], function(Map, MapView) {
+
+                var map = new Map({
+                basemap: "topo-vector"
+                });
+
+                var view = new MapView({
+                container: "viewDiv",
+                map: map,
+                center: [-118.71511, 34.09042], // longitude, latitude
+                zoom: 11
+                });
+            });
+            </script> --}}
+    </head>
+    <body>
+
+        <h1>Weather for {{ city }}</h1>
+
+        {{#each weather}}
+        <img src="/{{this.icon}}.png">
+            <ul>
+               <li> Description: {{ this.description }} </li>
+               <li> Main:        {{ this.main }} </li>
+            </ul>              
+        {{/each}}
+
+        <div>
+            {{#if metric}}
+                Min Temperature: {{temperature.temp_min}} °C<br>
+                Max Temperature: {{temperature.temp_max}} °C<br> 
+            {{else}}
+                Min Temperature: {{temperature.temp_min}} °F<br>
+                Max Temperature: {{temperature.temp_max}} °F<br> 
+            {{/if}}
+        </div>       
+
+
+            <iframe
+            width="600"
+            height="450"
+            frameborder="0" style="border:0"
+            src="https://www.google.com/maps/embed/v1/view?key={{mapkey}}&center={{location.lat}},{{location.lon}}&zoom=12" allowfullscreen>
+            </iframe>
+    </body>
+</html>
